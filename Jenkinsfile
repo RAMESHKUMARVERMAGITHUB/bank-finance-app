@@ -14,7 +14,7 @@ pipeline{
 
                 script{
                  
-                 git branch: 'master', url: 'https://github.com/rameshkumarvermagithub/spock-lizard-docker.git'
+                 git branch: 'master', url: 'https://github.com/rameshkumarvermagithub/bank-finance-app.git'
 
                 }
             }
@@ -82,21 +82,21 @@ pipeline{
                 script{
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
                         
-                        sh "docker build -t rameshkumarverma/spock-lizard-docker ."
-                        // sh "docker tag  spock-lizard-docker rameshkumarverma/spock-lizard-docker:latest"
-                        sh "docker push rameshkumarverma/spock-lizard-docker:latest"
+                        sh "docker build -t rameshkumarverma/bank-finance-app ."
+                        // sh "docker tag  bank-finance-app rameshkumarverma/bank-finance-app:latest"
+                        sh "docker push rameshkumarverma/bank-finance-app:latest"
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image rameshkumarverma/spock-lizard-docker:latest > trivyimage.txt"
+                sh "trivy image rameshkumarverma/bank-finance-app:latest > trivyimage.txt"
             }
         }
         stage("deploy_docker"){
             steps{
-                sh "docker run -d --name spock-lizard-docker -p 8080:8080 rameshkumarverma/spock-lizard-docker:latest"
+                sh "docker run -d --name bank-finance-app -p 8080:8080 rameshkumarverma/bank-finance-app:latest"
             }
         }
 
