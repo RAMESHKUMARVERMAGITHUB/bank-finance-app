@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name:bank-finance-app-service
+  name: bank-finance-app-service
 spec:
   selector:
     app: bank-finance-app
