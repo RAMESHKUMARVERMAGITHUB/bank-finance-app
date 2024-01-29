@@ -25,7 +25,7 @@ metadata:
 spec:
   selector:
     app: bank-finance-app
-  type: LoadBalancer
+  type: NodePort
   ports:
     - protocol: TCP
       port: 80
