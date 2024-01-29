@@ -96,22 +96,22 @@ pipeline{
         }
         stage("deploy_docker"){
             steps{
-                sh "docker run -d --name bank-finance-app -p 8080:8080 rameshkumarverma/bank-finance-app:latest"
+                sh "docker run -d --name bank-finance-app -p 8081:8081 rameshkumarverma/bank-finance-app:latest"
             }
         }
 
-        // stage('Deploy to kubernets'){
-        //     steps{
-        //         script{
-        //             // dir('K8S') {
-        //                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-        //                         sh 'kubectl apply -f deployment-service.yml'
-        //                         // sh 'kubectl apply -f service.yml'
-        //                 }
-        //             // }
-        //         }
-        //     }
-        // }
+        stage('Deploy to kubernets'){
+            steps{
+                script{
+                    // dir('K8S') {
+                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                                sh 'kubectl apply -f deploymentservice.yml'
+                                // sh 'kubectl apply -f service.yml'
+                        }
+                    // }
+                }
+            }
+        }
 
     }
 }
