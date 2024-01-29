@@ -24,7 +24,7 @@ metadata:
   name:bank-finance-app-service
 spec:
   selector:
-    app: sbank-finance-app
+    app: bank-finance-app
   type: NodePort
   ports:
     - protocol: TCP
